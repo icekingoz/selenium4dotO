@@ -1,0 +1,19 @@
+<configuration>
+    <!-- Root logger level set to INFO -->
+    <root level="INFO">
+        <appender-ref ref="Console" />
+    </root>
+
+    <!-- Specific logger for WebDriverManager (keep at WARN to avoid clutter) -->
+    <logger name="io.github.bonigarcia.wdm" level="WARN" />
+
+    <!-- Specific logger for your base package (set to INFO or DEBUG for detailed logs) -->
+    <logger name="base" level="INFO" />
+
+    <!-- Console Appender -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+</configuration>
