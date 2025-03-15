@@ -1,16 +1,15 @@
 package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import base.BaseLogger;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public abstract class BaseTest extends BaseLogger {
     protected WebDriver driver;
 
-    @BeforeEach
+    @BeforeTest
     public void setUp() {
         logInfo("Setting up WebDriver");
         WebDriverManager.chromedriver().setup();
@@ -19,7 +18,7 @@ public abstract class BaseTest extends BaseLogger {
         logInfo("WebDriver setup complete");
     }
 
-    @AfterEach
+    @AfterTest
     public void tearDown() {
         logInfo("Tearing down WebDriver");
         if (driver != null) {
