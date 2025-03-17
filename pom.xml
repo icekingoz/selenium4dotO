@@ -75,6 +75,14 @@
       <version>2.17.0</version>
     </dependency>
 
+    <!-- for JSON Object -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20250107</version>
+    </dependency>
+
+
     <!-- Apache JMeter -->
     <dependency>
       <groupId>org.apache.jmeter</groupId>
