@@ -4,8 +4,12 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
+import org.testng.annotations.BeforeClass;
 
 public class BaseAPI {
+
+
+
 
     protected Response createBooking() {
         JSONObject body = new JSONObject();
