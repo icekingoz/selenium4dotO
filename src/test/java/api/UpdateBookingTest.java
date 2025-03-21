@@ -6,18 +6,11 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
 public class UpdateBookingTest extends BaseAPI {
-
-    @BeforeClass
-    public static void setup() {
-        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
-        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
-    }
 
     @Test
     public  void updateBookingTest() {

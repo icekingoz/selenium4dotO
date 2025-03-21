@@ -3,18 +3,11 @@ package api;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class GetBookingIdsTest {
-
-    @BeforeTest
-    public static void setup() {
-        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
-        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
-    }
 
     @Test
     public void getBookingIds() {

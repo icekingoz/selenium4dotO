@@ -8,8 +8,11 @@ import org.testng.annotations.BeforeClass;
 
 public class BaseAPI {
 
-
-
+    @BeforeClass
+    public static void setup() {
+        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
+        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
+    }
 
     protected Response createBooking() {
         JSONObject body = new JSONObject();

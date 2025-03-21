@@ -6,15 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class HealthCheckTest {
-
-    @BeforeClass
-    public static void setup() {
-        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
-        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
-    }
 
     @Test
     public void healthCheck() {

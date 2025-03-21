@@ -4,12 +4,12 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.testng.annotations.BeforeTest;
 
 public class JsonPlaceholderTest {
 
-    @BeforeClass
+    @BeforeTest
     public static void setup() {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
     }
