@@ -1,16 +1,17 @@
 package api;
 
+import base.BaseAPI;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class GetBookingTest {
+public class GetBookingTest extends BaseAPI {
 
     @Test
     public void getBooking() {
-        Response response = RestAssured.get("/booking/4");
+        Response response = RestAssured.given(spec).get("/booking/4");
         response.print();
         String firstName = "Sally";
         String lastName = "Jackson";

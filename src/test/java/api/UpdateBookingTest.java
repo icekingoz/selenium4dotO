@@ -50,7 +50,7 @@ public class UpdateBookingTest extends BaseAPI {
 //                "password" : "password123"
 //    }'
 //
-        Response responseUpdate = RestAssured.given()
+        Response responseUpdate = RestAssured.given(spec)
                 .auth()
                 .preemptive()
                 .basic("admin","password123")

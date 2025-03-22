@@ -1,5 +1,6 @@
 package api;
 
+import base.BaseAPI;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -7,11 +8,11 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class GetBookingIdsTest {
+public class GetBookingIdsTest extends BaseAPI {
 
     @Test
     public void getBookingIds() {
-        Response response = RestAssured.get("/booking");
+        Response response = RestAssured.given(spec).get("/booking");
 
         Assert.assertEquals(response.getStatusCode(), 200, "Status is NOT 200");
         System.out.println("Status code is 200!");

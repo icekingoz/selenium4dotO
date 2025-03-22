@@ -1,17 +1,23 @@
 package base;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseAPI {
+    protected RequestSpecification spec;
 
-    @BeforeClass
-    public static void setup() {
-        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
-        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
+    @BeforeMethod
+    public void setup() {
+//        RestAssured.baseURI ="https://restful-booker.herokuapp.com";
+//        System.out.println("Setting up baseURI:" + RestAssured.baseURI);
+         spec = new RequestSpecBuilder()
+                .setBaseUri("https://restful-booker.herokuapp.com")
+                .build();
     }
 
     protected Response createBooking() {
@@ -29,7 +35,7 @@ public class BaseAPI {
         //Additional Needs
         body.put("additionalneeds", "Breakfast");
 
-        Response response = RestAssured.given().contentType(ContentType.JSON)
+        Response response = RestAssured.given(spec).contentType(ContentType.JSON)
                 .body(body.toString())
                 .post("https://restful-booker.herokuapp.com/booking");
         return response;
