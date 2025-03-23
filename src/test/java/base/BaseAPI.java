@@ -41,4 +41,25 @@ public class BaseAPI {
         return response;
     }
 
+    protected Response createBooking(String firstName, String lastName, int totalPrice, boolean depositPaid, String checkin,String checkout, String additionalNeeds) {
+        JSONObject body = new JSONObject();
+        body.put("firstname", firstName);
+        body.put("lastname", lastName);
+        body.put("totalprice", totalPrice);
+        body.put("depositpaid", depositPaid);
+
+        JSONObject bookingDates = new JSONObject();
+        bookingDates.put("checkin", checkin);
+        bookingDates.put("checkout", checkout);
+        //add bookingdates into the body
+        body.put("bookingdates", bookingDates);
+        //Additional Needs
+        body.put("additionalneeds", additionalNeeds);
+
+        Response response = RestAssured.given(spec).contentType(ContentType.JSON)
+                .body(body.toString())
+                .post("https://restful-booker.herokuapp.com/booking");
+        return response;
+    }
+
 }
