@@ -58,7 +58,7 @@ public class BaseAPI {
 
         Response response = RestAssured.given(spec).contentType(ContentType.JSON)
                 .body(body.toString())
-                .post("https://restful-booker.herokuapp.com/booking");
+                .post("/booking");
         return response;
     }
 

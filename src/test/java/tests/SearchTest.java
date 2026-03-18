@@ -3,6 +3,8 @@ package tests;
 import base.BaseTest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
