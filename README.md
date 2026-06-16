@@ -20,8 +20,5 @@ This is a **custom-built Selenium automation framework** designed to showcase my
 ✔️ **Parallel Test Execution**  
 ✔️ **CI/CD Ready** (GitHub Actions, Jenkins)
 
-## ⚠️ License & Usage Restrictions
+## ⚠️ License
 This framework is part of my **portfolio** and is provided **for demonstration purposes only**.  
-**Unauthorized use, modification, or distribution is prohibited** without written permission.
-
-📩 **Need a custom automation framework? Contact me at [Your Email] or [LinkedIn].**
