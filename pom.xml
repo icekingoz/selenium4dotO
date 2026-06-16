@@ -3,143 +3,163 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yourcompany.automation</groupId>
+  <groupId>io.github.icekingoz</groupId>
   <artifactId>selenium-framework</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <name>selenium-framework</name>
+  <description>UI + API + Performance test framework: Selenium 4, TestNG, Cucumber, REST Assured, JMeter, Allure</description>
 
   <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <surefire.plugin.version>3.1.2</surefire.plugin.version>
-    <jmeter.version>5.6.3</jmeter.version>
+
+    <selenium.version>4.27.0</selenium.version>
+    <testng.version>7.10.2</testng.version>
+    <restassured.version>5.5.0</restassured.version>
+    <cucumber.version>7.20.1</cucumber.version>
+    <allure.version>2.29.0</allure.version>
+    <extentreports.version>5.1.2</extentreports.version>
+    <jackson.version>2.18.2</jackson.version>
+    <logback.version>1.5.16</logback.version>
+    <aspectj.version>1.9.22.1</aspectj.version>
+
+    <surefire.version>3.5.2</surefire.version>
+    <jmeter.plugin.version>3.8.0</jmeter.plugin.version>
+    <suite.file>src/test/resources/suites/testng.xml</suite.file>
   </properties>
 
   <dependencies>
-    <!-- Selenium WebDriver -->
+    <!-- Selenium 4 (Selenium Manager handles drivers; no WebDriverManager needed) -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.16.0</version>
+      <version>${selenium.version}</version>
     </dependency>
 
-    <!-- WebDriverManager -->
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.9.2</version>
-    </dependency>
-
-    <!-- Selenium DevTools -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-devtools-v131</artifactId>
-      <version>4.27.0</version>
-    </dependency>
-
-<!--    &lt;!&ndash; JUnit 5 (Kept) &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>org.junit.jupiter</groupId>-->
-<!--      <artifactId>junit-jupiter</artifactId>-->
-<!--      <version>5.10.0</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-
-    <!-- TestNG (Added) -->
+    <!-- TestNG runner -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.10.2</version>
-      <scope>test</scope>
+      <version>${testng.version}</version>
     </dependency>
 
-    <!-- Logging (SLF4J with Logback) -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.5.16</version>
-    </dependency>
-
-    <!-- REST Assured -->
+    <!-- API testing -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>4.5.1</version>
-      <scope>test</scope>
+      <version>${restassured.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>${restassured.version}</version>
     </dependency>
 
-    <!-- JSON Parsing -->
+    <!-- BDD -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+
+    <!-- Reporting: Allure (primary) + Extent (secondary) -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-rest-assured</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>${extentreports.version}</version>
+    </dependency>
+
+    <!-- JSON + logging -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.17.0</version>
-    </dependency>
-
-    <!-- for JSON Object -->
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20250107</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.18.3</version>
-    </dependency>
-
-    <!-- Apache JMeter -->
-    <dependency>
-      <groupId>org.apache.jmeter</groupId>
-      <artifactId>ApacheJMeter_core</artifactId>
-      <version>${jmeter.version}</version>
+      <version>${jackson.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.jmeter</groupId>
-      <artifactId>ApacheJMeter_http</artifactId>
-      <version>${jmeter.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.jmeter</groupId>
-      <artifactId>ApacheJMeter_junit</artifactId>
-      <version>${jmeter.version}</version>
-      <scope>test</scope>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Compiler Plugin for Java 21 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <release>21</release>
-        </configuration>
+        <version>3.13.0</version>
       </plugin>
 
-      <!-- Surefire Plugin for TestNG-->
+      <!-- Runs the TestNG suite; aspectjweaver agent enables Allure step capture -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M4</version>
-        <!-- <configuration> <suiteXmlFiles> <suiteXmlFile>testng.xml</suiteXmlFile>
-            </suiteXmlFiles> </configuration> -->
+        <version>${surefire.version}</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${suite.file}</suiteXmlFile>
+          </suiteXmlFiles>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
-      <!-- JMeter Maven Plugin -->
+      <!-- `mvn allure:report` / `allure:serve` -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.12.0</version>
+        <configuration>
+          <reportVersion>${allure.version}</reportVersion>
+        </configuration>
+      </plugin>
+
+      <!-- Performance: runs .jmx plans from src/test/jmeter via `mvn -Pperf verify` -->
       <plugin>
         <groupId>com.lazerycode.jmeter</groupId>
         <artifactId>jmeter-maven-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>${jmeter.plugin.version}</version>
         <executions>
           <execution>
+            <id>configuration</id>
+            <goals><goal>configure</goal></goals>
+          </execution>
+          <execution>
             <id>jmeter-tests</id>
-            <goals>
-              <goal>jmeter</goal>
-            </goals>
+            <goals><goal>jmeter</goal></goals>
+          </execution>
+          <execution>
+            <id>jmeter-check-results</id>
+            <goals><goal>results</goal></goals>
           </execution>
         </executions>
       </plugin>
